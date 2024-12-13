@@ -1,14 +1,27 @@
 const std = @import("std");
 
 pub fn main() !void {
-    // Uncomment this block to pass the first stage
-    // const stdout = std.io.getStdOut().writer();
-    // try stdout.print("$ ", .{});
+    const stdout = std.io.getStdOut().writer();
+    try stdout.print("$ ", .{});
 
     const stdin = std.io.getStdIn().reader();
     var buffer: [1024]u8 = undefined;
     const user_input = try stdin.readUntilDelimiter(&buffer, '\n');
 
-    // TODO: Handle user input
-    _ = user_input;
+    const input: []u8 = parse_input(user_input);
+    const is_valid_builtin = try is_builtin(input);
+    if (is_valid_builtin) {
+        try stdout.print("{s}: command not found", .{input});
+    }
+}
+
+fn parse_input(input: []u8) []u8 {
+    return input;
+}
+
+fn is_builtin(cmd: []u8) !bool {
+    const stdout = std.io.getStdOut().writer();
+    try stdout.print("{s}", .{cmd});
+
+    return false;
 }
