@@ -22,8 +22,6 @@ fn parse_input(input: []u8) []u8 {
 }
 
 fn is_builtin(cmd: []u8) !bool {
-    const stdout = std.io.getStdOut().writer();
-    try stdout.print("checking for builtin {s}\n", .{cmd});
-
+    _ = cmd;
     return false;
 }
